@@ -6,11 +6,11 @@ The default behavior of this plugin formats a file when saving, but the `Fourmol
 
 # Configuration
 If you only want to format content manually setting the following variable to 0 will disable automatic formatting when saving your file:
-```
+```VimL
 let g:fourmolu_write = 0
 ```
 By default the plugin expects to find a fourmolu executable in your PATH but this can be changed by setting:
-```
+```VimL
 let g:fourmolu_executable = "fourmolu-0.7.0.1"
 ```
 
