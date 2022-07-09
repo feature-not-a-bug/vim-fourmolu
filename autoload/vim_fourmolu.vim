@@ -19,7 +19,7 @@ function! vim_fourmolu#FourmoluFmt() range
         echoerr "Couldn't run " . g:fourmolu_executable
     else
 
-        silent! exe "w !" . g:fourmolu_executable . " --no-cabal > /dev/null 2>&1"
+        silent! exe "w !" . g:fourmolu_executable . " > /dev/null 2>&1"
 
         if v:shell_error
             echo "Parse error"
@@ -27,7 +27,6 @@ function! vim_fourmolu#FourmoluFmt() range
             silent! exe "undojoin"
             silent! exe "keepjumps " . a:firstline . "," . a:lastline
                 \ . "!" . g:fourmolu_executable
-                \ . " --no-cabal "
         endif
 
         call winrestview(b:winview)
