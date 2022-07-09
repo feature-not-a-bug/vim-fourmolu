@@ -7,11 +7,7 @@ function! vim_fourmolu#FourmoluWriteOff()
 endfunction
 
 function! vim_fourmolu#FourmoluWriteToggle()
-    if g:fourmolu_write
-        let g:fourmolu_write = 0
-    else
-        let g:fourmolu_write = 1
-    endif
+    let g:fourmolu_write = !g:fourmolu_write
 endfunction
 
 function! vim_fourmolu#FourmoluFmt() range
@@ -19,24 +15,18 @@ function! vim_fourmolu#FourmoluFmt() range
         echoerr "Couldn't run " . g:fourmolu_executable
     else
 
-        silent! exe "w !" . g:fourmolu_executable . " --no-cabal > /dev/null 2>&1"
-
-        if v:shell_error
-            echo "Parse error"
-        else
-            silent! exe "undojoin"
-            silent! exe "keepjumps " . a:firstline . "," . a:lastline
-                \ . "!" . g:fourmolu_executable
-                \ . " --no-cabal "
-        endif
+        silent! exe "undojoin"
+        silent! exe "keepjumps " . a:firstline . "," . a:lastline
+            \ . "!" . g:fourmolu_executable
+            \ . " --no-cabal "
 
         call winrestview(b:winview)
-	endif
+    endif
 endfunction
 
 function! vim_fourmolu#FourmoluWriteRun()
-	if g:fourmolu_write
-		let b:winview = winsaveview()
-		exe "%call vim_fourmolu#FourmoluFmt()"
-	endif
+    if g:fourmolu_write
+        let b:winview = winsaveview()
+        exe "%call vim_fourmolu#FourmoluFmt()"
+    endif
 endfunction
