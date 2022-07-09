@@ -1,10 +1,10 @@
 # vim-fourmolu
 This plugin provides an interface for https://github.com/fourmolu/fourmolu in Vim
 
-#Usage
+# Usage
 The default behavior of this plugin formats a file when saving, but the `FourmoluFmt` command can be used to format source manually. Ranges are supported when using `FourmoluFmt` too. The plugin provides additional commands to enable, disable, or toggle formatting when saving a file using `FourmoluWriteOn`, `FourmoluWriteOff`, and `FourmoluWriteToggle`.
 
-#Configuration
+# Configuration
 If you only want to format content manually setting the following variable to 0 will disable automatic formatting when saving your file:
 ```
 let g:fourmolu_write = 0
