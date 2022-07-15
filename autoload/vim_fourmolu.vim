@@ -38,7 +38,6 @@ function! vim_fourmolu#FourmoluFmt() range
         echoerr "Couldn't run " . g:fourmolu_executable
     else
 
-    silent! exe "undojoin"
     silent exe "keepjumps " . a:firstline . "," . a:lastline
         \ . "!" . g:fourmolu_executable
         \ . s:Find_cabal()
