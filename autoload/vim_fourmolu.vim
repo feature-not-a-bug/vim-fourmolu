@@ -42,6 +42,39 @@ function! vim_fourmolu#FourmoluFmt() range
         \ . "!" . g:fourmolu_executable
         \ . s:Find_cabal()
 
+    if (v:shell_error)
+        exe "undo"
+            if v:shell_error == 1
+                echoerr "General problem"
+            elseif v:shell_error == 2
+                echoerr "CPP used (deprecated)"
+            elseif v:shell_error == 3
+                echoerr "Parsing of original input failed"
+            elseif v:shell_error == 4
+                echoerr "Parsing of formatted code failed"
+            elseif v:shell_error == 5
+                echoerr "AST of original and formatted code differs"
+            elseif v:shell_error == 6
+                echoerr "Formatting is not idempotent"
+            elseif v:shell_error == 7
+                echoerr "Unrecognized GHC options"
+            elseif v:shell_error == 8
+                echoerr "Cabal file parsing failed"
+            elseif v:shell_error == 9
+                echoerr "Missing input file path when using stdin input and accounting for .cabal files"
+            elseif v:shell_error == 10
+                echoerr "Parse error while parsing fixity overrides"
+            elseif v:shell_error == 100
+                echoerr "In checking mode: unformatted files"
+            elseif v:shell_error == 101
+                echoerr "Inplace mode does not work with stdin"
+            elseif v:shell_error == 102
+                echoerr "Other issue (with multiple input files)"
+            elseif v:shell_error == 400
+                echoerr "Failed to load Fourmolu configuration file"
+            endif
+    endif
+
     call winrestview(b:winview)
     endif
 endfunction
