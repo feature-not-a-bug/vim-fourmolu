@@ -40,7 +40,7 @@ function! vim_fourmolu#FourmoluFmt() range
 
     silent exe "keepjumps " . a:firstline . "," . a:lastline
         \ . "!" . g:fourmolu_executable
-        \ . " -q "
+        \ . g:fourmolu_quiet
         \ . s:Find_cabal()
 
     if (v:shell_error)

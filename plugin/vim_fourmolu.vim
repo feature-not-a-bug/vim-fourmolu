@@ -11,6 +11,13 @@ if !exists("g:fourmolu_executable") && executable("fourmolu")
     let g:fourmolu_executable = "fourmolu"
 endif
 
+" If executable contains 'fourmolu' (case insensitve), add -q flag
+if !exists("g:fourmolu_quiet") && g:fourmolu_executable =~? "fourmolu"
+    let g:fourmolu_quiet = " -q "
+else
+    let g:fourmolu_quiet = ""
+endif
+
 command! -range=% FourmoluFmt exe "let b:winview = winsaveview() | <line1>, <line2>call vim_fourmolu#FourmoluFmt()"
 command! FourmoluWriteOn exe "call vim_fourmolu#FourmoluWriteOn()"
 command! FourmoluWriteOff exe "call vim_fourmolu#FourmoluWriteOff()"
