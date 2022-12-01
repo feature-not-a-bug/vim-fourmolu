@@ -18,7 +18,7 @@ else
     let g:fourmolu_quiet = ""
 endif
 
-command! -range=% FourmoluFmt exe "let b:winview = winsaveview() | <line1>, <line2>call vim_fourmolu#FourmoluFmt()"
+command! -range=% FourmoluFmt exe "<line1>, <line2>call vim_fourmolu#FourmoluFmt()"
 command! FourmoluWriteOn exe "call vim_fourmolu#FourmoluWriteOn()"
 command! FourmoluWriteOff exe "call vim_fourmolu#FourmoluWriteOff()"
 command! FourmoluWriteToggle exe "call vim_fourmolu#FourmoluWriteToggle()"
